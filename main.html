@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -24,17 +25,6 @@
             min-height: 100vh;
             /* 둥근 글씨체 우선 적용 */
             font-family: 'M PLUS Rounded 1c', 'Pretendard', sans-serif;
-            position: relative;
-            overflow: hidden; /* 장식용 이미지가 화면 밖으로 나갈 때 스크롤바 방지 */
-        }
-
-        /* 메인 콘텐츠 영역 (글씨와 버튼이 이미지 위에 오도록 설정) */
-        .main-content {
-            position: relative;
-            z-index: 10;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
         }
 
         /* 중앙 안내 문구 스타일 */
@@ -86,59 +76,23 @@
             transform: translateY(0);
             box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
         }
-
-        /* [추가] 일러스트 이미지 데코레이션 공통 스타일 */
-        .decor-img {
-            position: absolute;
-            pointer-events: none; /* 이미지가 버튼 클릭을 방해하지 않도록 설정 */
-            border-radius: 20px;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.06);
-            object-fit: cover;
-        }
-
-        /* 왼쪽 하단: 침대와 이불, 베개 느낌의 아늑한 침구 이미지 */
-        .img-bedding {
-            left: -50px;
-            bottom: -50px;
-            width: 450px;
-            height: 450px;
-            transform: rotate(15px);
-            opacity: 0.85;
-        }
-
-        /* 오른쪽 하단: 귀여운 인형(곰인형) 이미지 */
-        .img-doll {
-            right: 40px;
-            bottom: 40px;
-            width: 300px;
-            height: 300px;
-            opacity: 0.9;
-        }
     </style>
 </head>
 <body>
 
-    <!-- [추가] 배경에 배치할 인형 및 침구류 이미지 (Unsplash의 고품질 무료 일러스트/사진 사용) -->
-    <!-- 이불과 베개가 있는 침구 이미지 -->
-    <img src="https://unsplash.com" alt="침구류와 베개" class="decor-img img-bedding">
-    
-    <!-- 귀여운 곰인형 이미지 -->
-    <img src="https://unsplash.com" alt="인형" class="decor-img img-doll">
+    <!-- 중앙 타이틀 문구 -->
+    <div class="title">하나를 고르세요.</div>
 
-    <!-- 메인 콘텐츠 영역 -->
-    <div class="main-content">
-        <!-- 중앙 타이틀 문구 -->
-        <div class="title">하나를 고르세요.</div>
-
-        <!-- 나란히 배치된 버튼 2개 -->
-        <div class="button-container">
-            <a href="main.html" class="btn">자러가기</a>
-            <a href="earthquake.html" class="btn">지진모델링</a>
-        </div>
+    <!-- 나란히 배치된 버튼 2개 -->
+    <div class="button-container">
+        <!-- 메인화면이나 이전 SVG에서 쓰인 main.html로 연결되도록 설정해 두었습니다 -->
+        <a href="main.html" class="btn">자러가기</a>
+        <a href="earthquake.html" class="btn">지진모델링</a>
     </div>
 
 </body>
 </html>
+
 
 
 
