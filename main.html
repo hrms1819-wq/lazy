@@ -1,1 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>선택 화면</title>
+    <!-- 둥근 글씨체를 사용하기 위한 구글 폰트 불러오기 -->
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* 웹페이지 기본 스타일 설정 */
+        body {
+            margin: 0;
+            padding: 0;
+            /* 아이보리 색상 배경 */
+            background-color: #FAF6EE; 
+            /* 화면 정중앙 정렬을 위한 Flexbox 설정 */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            /* 둥근 글씨체 우선 적용 */
+            font-family: 'M PLUS Rounded 1c', 'Pretendard', sans-serif;
+        }
+
+        /* 중앙 안내 문구 스타일 */
+        .title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            /* 흰색 글씨 */
+            color: #FFFFFF; 
+            margin-bottom: 40px;
+            /* 흰색 글씨가 아이보리 배경에서 잘 보이도록 부드러운 그림자 추가 */
+            text-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15); 
+            letter-spacing: -1px;
+        }
+
+        /* 버튼들을 나란히 배치하기 위한 컨테이너 */
+        .button-container {
+            display: flex;
+            gap: 20px; /* 버튼 사이의 간격 */
+        }
+
+        /* 공통 버튼 스타일 */
+        .btn {
+            display: inline-block;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            /* 연두색 배경 */
+            background-color: #A3E635; 
+            /* 흰색 글씨 */
+            color: #FFFFFF; 
+            text-decoration: none;
+            border-radius: 30px; /* 둥근 버튼 모양 */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.2s ease-in-out;
+            cursor: pointer;
+            border: none;
+            font-family: inherit;
+        }
+
+        /* 버튼 위에 마우스를 올렸을 때(Hover) 효과 */
+        .btn:hover {
+            background-color: #8BDE1E; /* 조금 더 진한 연두색으로 변동 */
+            transform: translateY(-2px); /* 살짝 위로 떠오르는 효과 */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* 버튼을 클릭했을 때 효과 */
+        .btn:active {
+            transform: translateY(0);
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 중앙 타이틀 문구 -->
+    <div class="title">하나를 고르세요.</div>
+
+    <!-- 나란히 배치된 버튼 2개 -->
+    <div class="button-container">
+        <!-- 메인화면이나 이전 SVG에서 쓰인 main.html로 연결되도록 설정해 두었습니다 -->
+        <a href="main.html" class="btn">자러가기</a>
+        <a href="earthquake.html" class="btn">지진모델링</a>
+    </div>
+
+</body>
+</html>
+
 
