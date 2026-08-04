@@ -1,1 +1,221 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>실시간 세계 지진 현황 (USGS)</title>
+  
+  <!-- Leaflet CSS & JS (지도 라이브러리) -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    body, html {
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+    }
+    #app-container {
+      display: flex;
+      height: 100vh;
+      width: 100vw;
+    }
+    /* 사이드바 스타일 (최신 지진 리스트) */
+    #sidebar {
+      width: 340px;
+      height: 100%;
+      background-color: #f8f9fa;
+      border-right: 1px solid #dee2e6;
+      display: flex;
+      flex-direction: column;
+      z-index: 1000;
+    }
+    .sidebar-header {
+      padding: 15px;
+      background-color: #343a40;
+      color: white;
+    }
+    .sidebar-header h2 {
+      font-size: 1.1rem;
+      margin-bottom: 5px;
+    }
+    .sidebar-header p {
+      font-size: 0.8rem;
+      color: #adb5bd;
+    }
+    #eq-list {
+      flex: 1;
+      overflow-y: auto;
+      list-style: none;
+    }
+    .eq-item {
+      display: flex;
+      align-items: center;
+      padding: 12px 15px;
+      border-bottom: 1px solid #e9ecef;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .eq-item:hover {
+      background-color: #e2e6ea;
+    }
+    .eq-mag {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: white;
+      margin-right: 12px;
+      font-size: 0.95rem;
+      flex-shrink: 0;
+    }
+    .eq-info {
+      flex: 1;
+      font-size: 0.85rem;
+    }
+    .eq-title {
+      font-weight: 600;
+      color: #212529;
+      margin-bottom: 3px;
+    }
+    .eq-sub {
+      color: #6c757d;
+      font-size: 0.75rem;
+    }
+    /* 지도 스타일 */
+    #map {
+      flex: 1;
+      height: 100%;
+    }
+    /* 모바일 대응 반응형 */
+    @media (max-width: 768px) {
+      #app-container {
+        flex-direction: column-reverse;
+      }
+      #sidebar {
+        width: 100%;
+        height: 35%;
+      }
+      #map {
+        height: 65%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div id="app-container">
+  <!-- 사이드바: 최신 지진 목록 -->
+  <div id="sidebar">
+    <div class="sidebar-header">
+      <h2> USGS 실시간 지진 (M2.5+)</h2>
+      <p id="status-text">데이터 로딩 중...</p>
+    </div>
+    <ul id="eq-list"></ul>
+  </div>
+
+  <!-- 지도 영역 -->
+  <div id="map"></div>
+</div>
+
+<script>
+  // 1. 지도 초기화 (세계 지도 중심 설정)
+  const map = L.map('map').setView([20, 0], 2);
+
+  // 라이트 테마 지도 타일 레이어 추가
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+    maxZoom: 19,
+    attribution: '&copy; OpenStreetMap &copy; CARTO'
+  }).addTo(map);
+
+  // 지진 규모(Magnitude)에 따른 색상 정의
+  function getColor(mag) {
+    return mag > 6.0 ? '#d73027' :
+           mag > 5.0 ? '#f46d43' :
+           mag > 4.0 ? '#fdae61' :
+           mag > 3.0 ? '#fee08b' : '#d9ef8b';
+  }
+
+  // 지진 규모에 따른 원 크기 정의
+  function getRadius(mag) {
+    return Math.max(mag * 3, 4);
+  }
+
+  // 2. USGS 최근 24시간 M2.5+ 실시간 지진 GeoJSON 데이터 수신
+  const usgsUrl = 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson';
+
+  fetch(usgsUrl)
+    .then(response => response.json())
+    .then(data => {
+      const features = data.features;
+      const listElement = document.getElementById('eq-list');
+      document.getElementById('status-text').innerText = `최근 24시간 동안 ${data.metadata.count}건 발생`;
+
+      features.forEach(feature => {
+        const props = feature.properties;
+        const coords = feature.geometry.coordinates; // [lng, lat, depth]
+        const lat = coords[1];
+        const lng = coords[0];
+        const depth = coords[2];
+        const mag = props.mag ? props.mag.toFixed(1) : 'N/A';
+        const color = getColor(props.mag);
+        const timeStr = new Date(props.time).toLocaleString('ko-KR');
+
+        // 지도에 원형 마커 생성
+        const circleMarker = L.circleMarker([lat, lng], {
+          radius: getRadius(props.mag),
+          fillColor: color,
+          color: '#000',
+          weight: 0.5,
+          opacity: 0.8,
+          fillOpacity: 0.7
+        }).addTo(map);
+
+        // 팝업 내용 설정
+        const popupContent = `
+          <div style="font-size: 0.9rem;">
+            <strong style="font-size: 1.0rem;">규모 M ${mag}</strong><br>
+            <b>위치:</b> ${props.place}<br>
+            <b>발생 시각:</b> ${timeStr}<br>
+            <b>깊이:</b> ${depth} km
+          </div>
+        `;
+        circleMarker.bindPopup(popupContent);
+
+        // 사이드바 목록 아이템 생성
+        const listItem = document.createElement('li');
+        listItem.className = 'eq-item';
+        listItem.innerHTML = `
+          <div class="eq-mag" style="background-color: ${color};">${mag}</div>
+          <div class="eq-info">
+            <div class="eq-title">${props.place}</div>
+            <div class="eq-sub">${timeStr} | 깊이 ${depth}km</div>
+          </div>
+        `;
+
+        // 리스트 항목 클릭 시 해당 지진 위치로 이동 및 팝업 표시
+        listItem.addEventListener('click', () => {
+          map.setView([lat, lng], 6);
+          circleMarker.openPopup();
+        });
+
+        listElement.appendChild(listItem);
+      });
+    })
+    .catch(err => {
+      console.error('데이터 로드 실패:', err);
+      document.getElementById('status-text').innerText = '데이터를 불러오지 못했습니다.';
+    });
+</script>
+
+</body>
+</html>
