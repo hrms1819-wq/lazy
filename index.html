@@ -1,20 +1,18 @@
+
 <svg width="1920" height="1080" viewBox="0 0 1920 1080"
 xmlns="http://www.w3.org/2000/svg">
 
 <defs>
 
-<!-- 배경 색 -->
 <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
 <stop offset="0%" stop-color="#FFF8F2"/>
 <stop offset="50%" stop-color="#F6F2FF"/>
 <stop offset="100%" stop-color="#EAF7F8"/>
 </linearGradient>
 
-<!-- 글자 그림자 -->
 <filter id="shadow">
-<feDropShadow dx="0" dy="5" stdDeviation="6"
-flood-color="#999"
-flood-opacity="0.2"/>
+<feDropShadow dx="0" dy="5" stdDeviation="8"
+flood-color="#bfbfbf" flood-opacity="0.25"/>
 </filter>
 
 </defs>
@@ -27,38 +25,26 @@ flood-opacity="0.2"/>
 
 <!-- 구름 -->
 
-<ellipse cx="280" cy="180"
-rx="130" ry="55"
-fill="#ffffff"
-opacity="0.45"/>
+<ellipse cx="280" cy="180" rx="120" ry="50"
+fill="#ffffff" opacity="0.45"/>
 
-<ellipse cx="1450" cy="210"
-rx="170" ry="65"
-fill="#ffffff"
-opacity="0.35"/>
+<ellipse cx="1450" cy="210" rx="170" ry="60"
+fill="#ffffff" opacity="0.4"/>
 
-<ellipse cx="1700" cy="150"
-rx="110" ry="50"
-fill="#ffffff"
-opacity="0.4"/>
-
-<ellipse cx="600" cy="120"
-rx="100" ry="40"
-fill="#FFE7EF"
-opacity="0.35"/>
+<ellipse cx="1700" cy="140" rx="100" ry="45"
+fill="#ffffff" opacity="0.5"/>
 
 
 
-<!-- Lazy 로고 -->
+<!-- Lazy -->
 
 <text
 x="960"
-y="300"
+y="280"
 text-anchor="middle"
-font-size="150"
+font-size="140"
 font-weight="800"
 font-family="Baloo 2, Fredoka, Nunito, sans-serif"
-letter-spacing="8"
 fill="#222222"
 filter="url(#shadow)">
 Lazy
@@ -66,191 +52,98 @@ Lazy
 
 
 
-<!-- 먼지 캐릭터 1 -->
+<!-- 먼지1 -->
 
-<g transform="translate(500 650)">
+<g transform="translate(420 620)">
 
+<circle r="48" fill="#3B3B3B"/>
 
-<!-- 털 -->
-<g stroke="#333" stroke-width="7"
-stroke-linecap="round">
+<circle cx="-15" cy="-8" r="6" fill="white"/>
+<circle cx="15" cy="-8" r="6" fill="white"/>
 
-<line x1="0" y1="-55" x2="0" y2="-80"/>
-<line x1="35" y1="-45" x2="50" y2="-70"/>
-<line x1="55" y1="-15" x2="80" y2="-25"/>
-<line x1="55" y1="20" x2="80" y2="35"/>
-<line x1="30" y1="45" x2="45" y2="70"/>
-<line x1="0" y1="55" x2="0" y2="80"/>
-<line x1="-35" y1="45" x2="-50" y2="70"/>
-<line x1="-55" y1="20" x2="-80" y2="35"/>
-<line x1="-55" y1="-15" x2="-80" y2="-25"/>
-<line x1="-35" y1="-45" x2="-50" y2="-70"/>
-
-</g>
-
-
-<!-- 몸 -->
-
-<circle r="55" fill="#333"/>
-
-
-<!-- 잠자는 눈 -->
-
-<path d="M-22 -5 Q-12 -15 -2 -5"
+<path d="M-12 12 Q0 20 12 12"
 stroke="white"
-stroke-width="5"
-fill="none"/>
-
-<path d="M2 -5 Q12 -15 22 -5"
-stroke="white"
-stroke-width="5"
-fill="none"/>
-
+stroke-width="3"
+fill="none"
+stroke-linecap="round"/>
 
 </g>
 
 
 
+<!-- 먼지2 -->
 
-<!-- 먼지 캐릭터 2 -->
+<g transform="translate(700 760)">
 
-<g transform="translate(700 760) scale(.8)">
+<circle r="42" fill="#444"/>
 
-<g stroke="#444" stroke-width="7"
-stroke-linecap="round">
+<circle cx="-13" cy="-7" r="5" fill="white"/>
+<circle cx="13" cy="-7" r="5" fill="white"/>
 
-<line x1="0" y1="-55" x2="0" y2="-80"/>
-<line x1="40" y1="-40" x2="55" y2="-65"/>
-<line x1="60" y1="0" x2="85" y2="0"/>
-<line x1="40" y1="40" x2="55" y2="65"/>
-<line x1="0" y1="55" x2="0" y2="80"/>
-<line x1="-40" y1="40" x2="-55" y2="65"/>
-<line x1="-60" y1="0" x2="-85" y2="0"/>
-<line x1="-40" y1="-40" x2="-55" y2="-65"/>
-
-</g>
-
-<circle r="55" fill="#444"/>
-
-
-<path d="M-20 -5 Q-10 -15 0 -5"
+<path d="M-10 10 Q0 17 10 10"
 stroke="white"
-stroke-width="5"
-fill="none"/>
-
-<path d="M0 -5 Q10 -15 20 -5"
-stroke="white"
-stroke-width="5"
-fill="none"/>
+stroke-width="3"
+fill="none"
+stroke-linecap="round"/>
 
 </g>
 
 
 
+<!-- 먼지3 -->
 
-<!-- 먼지 캐릭터 3 -->
+<g transform="translate(1050 650)">
 
-<g transform="translate(1100 700)">
+<circle r="50" fill="#333"/>
 
-<g stroke="#222"
-stroke-width="7"
-stroke-linecap="round">
+<circle cx="-16" cy="-8" r="6" fill="white"/>
+<circle cx="16" cy="-8" r="6" fill="white"/>
 
-<line x1="0" y1="-50" x2="0" y2="-75"/>
-<line x1="45" y1="-25" x2="70" y2="-40"/>
-<line x1="45" y1="25" x2="70" y2="40"/>
-<line x1="0" y1="50" x2="0" y2="75"/>
-<line x1="-45" y1="25" x2="-70" y2="40"/>
-<line x1="-45" y1="-25" x2="-70" y2="-40"/>
-
-</g>
-
-<circle r="50" fill="#222"/>
-
-
-<path d="M-18 -5 Q-10 -15 0 -5"
+<path d="M-12 12 Q0 20 12 12"
 stroke="white"
-stroke-width="5"
-fill="none"/>
-
-<path d="M0 -5 Q10 -15 18 -5"
-stroke="white"
-stroke-width="5"
-fill="none"/>
+stroke-width="3"
+fill="none"
+stroke-linecap="round"/>
 
 </g>
 
 
 
+<!-- 먼지4 -->
 
-<!-- 먼지 캐릭터 4 -->
+<g transform="translate(1350 720)">
 
-<g transform="translate(1350 650) scale(.9)">
+<circle r="45" fill="#4A4A4A"/>
 
-<g stroke="#333"
-stroke-width="7"
-stroke-linecap="round">
+<circle cx="-14" cy="-8" r="5" fill="white"/>
+<circle cx="14" cy="-8" r="5" fill="white"/>
 
-<line x1="0" y1="-55" x2="0" y2="-80"/>
-<line x1="45" y1="-30" x2="70" y2="-45"/>
-<line x1="50" y1="20" x2="75" y2="35"/>
-<line x1="0" y1="55" x2="0" y2="80"/>
-<line x1="-45" y1="30" x2="-70" y2="45"/>
-<line x1="-50" y1="-25" x2="-75" y2="-40"/>
-
-</g>
-
-<circle r="55" fill="#333"/>
-
-<path d="M-20 -5 Q-10 -15 0 -5"
+<path d="M-10 10 Q0 17 10 10"
 stroke="white"
-stroke-width="5"
-fill="none"/>
-
-<path d="M0 -5 Q10 -15 20 -5"
-stroke="white"
-stroke-width="5"
-fill="none"/>
+stroke-width="3"
+fill="none"
+stroke-linecap="round"/>
 
 </g>
 
 
 
+<!-- 먼지5 -->
 
-<!-- 먼지 캐릭터 5 -->
+<g transform="translate(1600 580)">
 
-<g transform="translate(1550 780) scale(.7)">
+<circle r="40" fill="#383838"/>
 
-<g stroke="#444"
-stroke-width="7"
-stroke-linecap="round">
+<circle cx="-12" cy="-6" r="5" fill="white"/>
+<circle cx="12" cy="-6" r="5" fill="white"/>
 
-<line x1="0" y1="-55" x2="0" y2="-80"/>
-<line x1="45" y1="-20" x2="70" y2="-35"/>
-<line x1="45" y1="25" x2="70" y2="40"/>
-<line x1="0" y1="55" x2="0" y2="80"/>
-<line x1="-45" y1="20" x2="-70" y2="35"/>
-<line x1="-45" y1="-20" x2="-70" y2="-35"/>
+<path d="M-9 9 Q0 15 9 9"
+stroke="white"
+stroke-width="3"
+fill="none"
+stroke-linecap="round"/>
 
 </g>
-
-<circle r="55" fill="#444"/>
-
-
-<path d="M-20 -5 Q-10 -15 0 -5"
-stroke="white"
-stroke-width="5"
-fill="none"/>
-
-<path d="M0 -5 Q10 -15 20 -5"
-stroke="white"
-stroke-width="5"
-fill="none"/>
-
-</g>
-
-
-</svg>
 
 
 
