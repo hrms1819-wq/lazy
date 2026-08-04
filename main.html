@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -15,8 +14,8 @@
         body {
             margin: 0;
             padding: 0;
-            /* 아이보리 색상 배경 */
-            background-color: #FAF6EE; 
+            /* 연핑크(#FFE5EC)에서 아이보리(#FAF6EE)로 변하는 대각선 그라데이션 */
+            background: linear-gradient(135deg, #FFE5EC 0%, #FAF6EE 100%); 
             /* 화면 정중앙 정렬을 위한 Flexbox 설정 */
             display: flex;
             flex-direction: column;
@@ -25,6 +24,17 @@
             min-height: 100vh;
             /* 둥근 글씨체 우선 적용 */
             font-family: 'M PLUS Rounded 1c', 'Pretendard', sans-serif;
+            position: relative;
+            overflow: hidden; /* 장식용 일러스트가 화면 밖으로 나갈 때 스크롤바 방지 */
+        }
+
+        /* 메인 콘텐츠 영역 (글씨와 버튼이 이미지 위에 오도록 설정) */
+        .main-content {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         /* 중앙 안내 문구 스타일 */
@@ -34,8 +44,8 @@
             /* 흰색 글씨 */
             color: #FFFFFF; 
             margin-bottom: 40px;
-            /* 흰색 글씨가 아이보리 배경에서 잘 보이도록 부드러운 그림자 추가 */
-            text-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15); 
+            /* 그라데이션 배경에서도 글씨가 또렷하게 보이도록 부드러운 그림자 추가 */
+            text-shadow: 0px 4px 12px rgba(0, 0, 0, 0.12); 
             letter-spacing: -1px;
         }
 
@@ -76,22 +86,105 @@
             transform: translateY(0);
             box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
         }
+
+        /* 일러스트 배치 스타일 (포지션 설정) */
+        .decor-svg {
+            position: absolute;
+            pointer-events: none; /* 버튼 클릭 방해 방지 */
+            filter: drop-shadow(0px 8px 20px rgba(0, 0, 0, 0.05));
+        }
+
+        /* 왼쪽 아래 아늑한 베개와 이불 침구 세트 */
+        .svg-bedding {
+            left: 5%;
+            bottom: 8%;
+            width: 280px;
+            height: 280px;
+        }
+
+        /* 오른쪽 아래 귀여운 인형 두 마리 */
+        .svg-dolls {
+            right: 8%;
+            bottom: 8%;
+            width: 240px;
+            height: 240px;
+        }
     </style>
 </head>
 <body>
 
-    <!-- 중앙 타이틀 문구 -->
-    <div class="title">하나를 고르세요.</div>
+    <!-- 왼쪽 하단: 침대 베개와 이불 SVG 일러스트 -->
+    <svg class="decor-svg svg-bedding" viewBox="0 0 200 200" xmlns="http://w3.org">
+        <!-- 침대 베이스/패드 -->
+        <rect x="10" y="70" width="180" height="120" rx="30" fill="#FFFBF7"/>
+        <rect x="20" y="80" width="160" height="100" rx="20" fill="#F4EAE1"/>
+        <!-- 베개 1 (핑크) -->
+        <rect x="35" y="45" width="60" height="40" rx="15" fill="#FFD6E0"/>
+        <!-- 베개 2 (화이트) -->
+        <rect x="105" y="45" width="60" height="40" rx="15" fill="#FFFFFF"/>
+        <!-- 덮는 이불 (아래쪽을 포근하게 덮는 형태) -->
+        <path d="M 10 110 Q 100 100 190 110 L 190 190 L 10 190 Z" fill="#E8F1F5" rx="10"/>
+        <path d="M 10 110 Q 100 100 190 110 L 190 135 Q 100 125 10 135 Z" fill="#D4E4ED"/>
+    </svg>
+    
+    <!-- 오른쪽 하단: 귀여운 곰인형과 토끼인형 SVG 일러스트 -->
+    <svg class="decor-svg svg-dolls" viewBox="0 0 200 200" xmlns="http://w3.org">
+        <!-- 왼쪽 큰 곰인형 -->
+        <g transform="translate(40, 50)">
+            <!-- 귀 -->
+            <circle cx="20" cy="20" r="14" fill="#D7C4B7" />
+            <circle cx="20" cy="20" r="7" fill="#ECCFC3" />
+            <circle cx="80" cy="20" r="14" fill="#D7C4B7" />
+            <circle cx="80" cy="20" r="7" fill="#ECCFC3" />
+            <!-- 얼굴 몸통 -->
+            <circle cx="50" cy="75" r="45" fill="#E6D5C3" />
+            <circle cx="50" cy="50" r="35" fill="#D7C4B7" />
+            <!-- 주둥이와 코 -->
+            <circle cx="50" cy="56" r="12" fill="#FFFFFF" />
+            <ellipse cx="50" cy="50" rx="5" ry="3" fill="#4A3E3D" />
+            <!-- 눈 -->
+            <circle cx="38" cy="45" r="3.5" fill="#4A3E3D" />
+            <circle cx="62" cy="45" r="3.5" fill="#4A3E3D" />
+            <!-- 볼터치 -->
+            <circle cx="28" cy="54" r="5" fill="#FFB3C6" opacity="0.6"/>
+            <circle cx="72" cy="54" r="5" fill="#FFB3C6" opacity="0.6"/>
+        </g>
 
-    <!-- 나란히 배치된 버튼 2개 -->
-    <div class="button-container">
-        <!-- 메인화면이나 이전 SVG에서 쓰인 main.html로 연결되도록 설정해 두었습니다 -->
-        <a href="main.html" class="btn">자러가기</a>
-        <a href="earthquake.html" class="btn">지진모델링</a>
+        <!-- 오른쪽 작은 토끼인형 -->
+        <g transform="translate(110, 80)">
+            <!-- 귀 -->
+            <ellipse cx="25" cy="20" rx="9" ry="25" fill="#F0E6EF" transform="rotate(-10 25 20)" />
+            <ellipse cx="25" cy="20" rx="4" ry="17" fill="#FBC4D6" transform="rotate(-10 25 20)" />
+            <ellipse cx="55" cy="20" rx="9" ry="25" fill="#F0E6EF" transform="rotate(10 55 20)" />
+            <ellipse cx="55" cy="20" rx="4" ry="17" fill="#FBC4D6" transform="rotate(10 55 20)" />
+            <!-- 얼굴 몸통 -->
+            <circle cx="40" cy="80" r="30" fill="#F7EEF6" />
+            <circle cx="40" cy="55" r="24" fill="#F0E6EF" />
+            <!-- 눈코입 -->
+            <circle cx="31" cy="52" r="2.5" fill="#4A3E3D" />
+            <circle cx="49" cy="52" r="2.5" fill="#4A3E3D" />
+            <polygon points="40,57 37,60 43,60" fill="#FBC4D6" />
+            <!-- 볼터치 -->
+            <circle cx="25" cy="58" r="4" fill="#FFB3C6" opacity="0.7"/>
+            <circle cx="55" cy="58" r="4" fill="#FFB3C6" opacity="0.7"/>
+        </g>
+    </svg>
+
+    <!-- 메인 콘텐츠 영역 -->
+    <div class="main-content">
+        <!-- 중앙 타이틀 문구 -->
+        <div class="title">하나를 고르세요.</div>
+
+        <!-- 나란히 배치된 버튼 2개 -->
+        <div class="button-container">
+            <a href="main.html" class="btn">자러가기</a>
+            <a href="earthquake.html" class="btn">지진모델링</a>
+        </div>
     </div>
 
 </body>
 </html>
+
 
 
 
